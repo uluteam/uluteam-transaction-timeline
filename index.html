@@ -165,6 +165,83 @@
     padding-top: 2px;
   }
 
+  .buyer-row {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 11px;
+    border-bottom: 1px dotted #ccc;
+    padding: 3px 0;
+    flex-wrap: wrap;
+  }
+
+  .buyer-label-select {
+    font-weight: 700;
+    color: #B32025;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 1px;
+    min-width: 90px;
+    white-space: nowrap;
+    background: #fff;
+    border: 1px solid #B32025;
+    border-radius: 3px;
+    padding: 3px 6px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+  }
+
+  .buyer-label-select:focus {
+    outline: 2px solid #B32025;
+    background: #fffbf0;
+  }
+
+  .buyer-row .buyer-label {
+    font-weight: 700;
+    color: #B32025;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 1px;
+    min-width: 80px;
+    white-space: nowrap;
+  }
+
+  .buyer-row .buyer-field {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .buyer-row .buyer-field-label {
+    font-weight: 600;
+    color: #666;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .buyer-input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #999;
+    background: transparent;
+    padding: 2px 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #1a1a1a;
+    outline: none;
+    min-width: 80px;
+  }
+
+  .buyer-input:focus {
+    border-bottom-color: #B32025;
+    background: #fffbf0;
+  }
+
   .info-row .value {
     font-family: 'JetBrains Mono', monospace;
     color: #1a1a1a;
@@ -493,6 +570,51 @@
     margin-right: 4px;
   }
 
+  .client-signoff {
+    padding: 8px 16px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 10px;
+  }
+
+  .signoff-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .signoff-label {
+    font-weight: 700;
+    color: #B32025;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .signoff-input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #999;
+    background: transparent;
+    padding: 2px 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #1a1a1a;
+    outline: none;
+  }
+
+  .signoff-input:focus {
+    border-bottom-color: #B32025;
+    background: #fffbf0;
+  }
+
   .footer {
     background: #000;
     color: #fff;
@@ -692,9 +814,45 @@
       <span class="label">Escrow #</span>
       <span class="value" contenteditable="true">—</span>
     </div>
-    <div class="info-row">
-      <span class="label">Buyer</span>
-      <span class="value" contenteditable="true">—</span>
+    <div class="buyer-row">
+      <select class="buyer-label-select">
+        <option value="Buyer #1" selected>Buyer #1</option>
+        <option value="Buyer #2">Buyer #2</option>
+        <option value="Seller #1">Seller #1</option>
+        <option value="Seller #2">Seller #2</option>
+      </select>
+      <div class="buyer-field">
+        <span class="buyer-field-label">Name</span>
+        <input type="text" class="buyer-input" placeholder="">
+      </div>
+      <div class="buyer-field">
+        <span class="buyer-field-label">Email</span>
+        <input type="email" class="buyer-input" placeholder="">
+      </div>
+      <div class="buyer-field">
+        <span class="buyer-field-label">Phone</span>
+        <input type="tel" class="buyer-input" placeholder="">
+      </div>
+    </div>
+    <div class="buyer-row">
+      <select class="buyer-label-select">
+        <option value="Buyer #1">Buyer #1</option>
+        <option value="Buyer #2" selected>Buyer #2</option>
+        <option value="Seller #1">Seller #1</option>
+        <option value="Seller #2">Seller #2</option>
+      </select>
+      <div class="buyer-field">
+        <span class="buyer-field-label">Name</span>
+        <input type="text" class="buyer-input" placeholder="">
+      </div>
+      <div class="buyer-field">
+        <span class="buyer-field-label">Email</span>
+        <input type="email" class="buyer-input" placeholder="">
+      </div>
+      <div class="buyer-field">
+        <span class="buyer-field-label">Phone</span>
+        <input type="tel" class="buyer-input" placeholder="">
+      </div>
     </div>
     <div class="info-row">
       <span class="label">Contract Ref Date</span>
@@ -1110,6 +1268,9 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="client-signoff" style="display:none;">
+  </div>
 
   <div class="disclaimer">
     <strong>Disclaimer</strong>
