@@ -1031,12 +1031,12 @@
     </thead>
     <tbody>
       <tr class="priority-mid">
-        <td class="term-no">I-1b</td>
+        <td class="term-no" data-term="I-1b">I-1b</td>
         <td><span class="due-date auto">—</span></td>
         <td class="description">SRPDS Delivered to Buyer</td>
         <td>
           <span class="offset-row">
-            <input type="number" class="offset-input" value="5" min="0" max="365" data-base="acceptance" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
+            <input type="number" class="offset-input" value="3" min="0" max="365" data-base="acceptance" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
             <select class="offset-select" onchange="recalcRow(this.previousElementSibling)">
               <option value="business">business days</option>
               <option value="calendar" selected>calendar days</option>
@@ -1048,34 +1048,34 @@
         <td class="comments-cell" contenteditable="true"></td>
       </tr>
       <tr class="priority-low">
-        <td class="term-no">I-3a</td>
+        <td class="term-no" data-term="I-3a">I-3a</td>
         <td><span class="due-date auto">—</span></td>
         <td class="description">Buyer's Acknowledgement of SRPDS</td>
         <td>
           <span class="offset-row">
-            <input type="number" class="offset-input" value="8" min="0" max="365" data-base="acceptance" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
+            <input type="number" class="offset-input" value="2" min="0" max="365" data-base="parent" data-parent="I-1b" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
             <select class="offset-select" onchange="recalcRow(this.previousElementSibling)">
               <option value="business">business days</option>
               <option value="calendar" selected>calendar days</option>
             </select>
-            from acceptance
+            from I-1b delivery
           </span>
         </td>
         <td class="checkbox-cell"><span class="checkbox" onclick="toggle(this)"></span></td>
         <td class="comments-cell" contenteditable="true"></td>
       </tr>
       <tr class="priority-low">
-        <td class="term-no">I-3b</td>
+        <td class="term-no" data-term="I-3b">I-3b</td>
         <td><span class="due-date auto">—</span></td>
         <td class="description">Buyer's Review/Acceptance of SRPDS</td>
         <td>
           <span class="offset-row">
-            <input type="number" class="offset-input" value="12" min="0" max="365" data-base="acceptance" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
+            <input type="number" class="offset-input" value="7" min="0" max="365" data-base="parent" data-parent="I-1b" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
             <select class="offset-select" onchange="recalcRow(this.previousElementSibling)">
               <option value="business">business days</option>
               <option value="calendar" selected>calendar days</option>
             </select>
-            from acceptance
+            from I-1b delivery
           </span>
         </td>
         <td class="checkbox-cell"><span class="checkbox" onclick="toggle(this)"></span></td>
@@ -1107,7 +1107,7 @@
     </thead>
     <tbody>
       <tr class="priority-mid">
-        <td class="term-no">M-1.1</td>
+        <td class="term-no" data-term="M-1.1">M-1.1</td>
         <td><span class="due-date auto">—</span></td>
         <td class="description">HOA/Condo Docs Delivered to Buyer</td>
         <td>
@@ -1124,34 +1124,34 @@
         <td class="comments-cell" contenteditable="true"></td>
       </tr>
       <tr class="priority-low">
-        <td class="term-no">M-1.2</td>
+        <td class="term-no" data-term="M-1.2">M-1.2</td>
         <td><span class="due-date auto">—</span></td>
         <td class="description">Buyer's Receipt/Acknowledgment of HOA/Condo Docs</td>
         <td>
           <span class="offset-row">
-            <input type="number" class="offset-input" value="10" min="0" max="365" data-base="acceptance" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
+            <input type="number" class="offset-input" value="3" min="0" max="365" data-base="parent" data-parent="M-1.1" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
             <select class="offset-select" onchange="recalcRow(this.previousElementSibling)">
               <option value="business">business days</option>
               <option value="calendar" selected>calendar days</option>
             </select>
-            from acceptance
+            from M-1.1 delivery
           </span>
         </td>
         <td class="checkbox-cell"><span class="checkbox" onclick="toggle(this)"></span></td>
         <td class="comments-cell" contenteditable="true"></td>
       </tr>
       <tr class="priority-low">
-        <td class="term-no">M-1.3</td>
+        <td class="term-no" data-term="M-1.3">M-1.3</td>
         <td><span class="due-date auto">—</span></td>
         <td class="description">Buyer's Review/Approval of HOA/Condo Docs</td>
         <td>
           <span class="offset-row">
-            <input type="number" class="offset-input" value="14" min="0" max="365" data-base="acceptance" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
+            <input type="number" class="offset-input" value="7" min="0" max="365" data-base="parent" data-parent="M-1.1" data-direction="after" data-type="calendar" onchange="recalcRow(this)" oninput="recalcRow(this)">
             <select class="offset-select" onchange="recalcRow(this.previousElementSibling)">
               <option value="business">business days</option>
               <option value="calendar" selected>calendar days</option>
             </select>
-            from acceptance
+            from M-1.1 delivery
           </span>
         </td>
         <td class="checkbox-cell"><span class="checkbox" onclick="toggle(this)"></span></td>
@@ -1503,9 +1503,18 @@
       }
     });
 
-    // All rows with offset inputs
+    // First pass: rows that depend on acceptance/closing
     document.querySelectorAll('.offset-input').forEach(input => {
-      calcFromInput(input, accDate, closeDate);
+      if (input.dataset.base !== 'parent') {
+        calcFromInput(input, accDate, closeDate);
+      }
+    });
+
+    // Second pass: rows that depend on a parent contingency
+    document.querySelectorAll('.offset-input').forEach(input => {
+      if (input.dataset.base === 'parent') {
+        calcFromInput(input, accDate, closeDate);
+      }
     });
   }
 
@@ -1520,6 +1529,46 @@
       input = input.previousElementSibling;
     }
     calcFromInput(input, accDate, closeDate);
+
+    // If this row is a parent, recalc any children that depend on it
+    const row = input.closest('tr');
+    const termEl = row.querySelector('.term-no');
+    const term = termEl ? termEl.dataset.term || termEl.textContent.trim() : null;
+
+    if (term) {
+      document.querySelectorAll('.offset-input[data-base="parent"]').forEach(childInput => {
+        if (childInput.dataset.parent === term) {
+          calcFromInput(childInput, accDate, closeDate);
+        }
+      });
+    }
+  }
+
+  function getRowDate(termCode) {
+    const cells = document.querySelectorAll('.term-no');
+    for (const cell of cells) {
+      const term = cell.dataset.term || cell.textContent.trim();
+      if (term === termCode) {
+        const row = cell.closest('tr');
+        const dateEl = row.querySelector('.due-date');
+        if (dateEl) {
+          const txt = dateEl.textContent.trim();
+          if (txt && txt !== '—') {
+            // Parse mm/dd/yy back into Date
+            const parts = txt.split('/');
+            if (parts.length === 3) {
+              const mm = parseInt(parts[0], 10) - 1;
+              const dd = parseInt(parts[1], 10);
+              let yy = parseInt(parts[2], 10);
+              if (yy < 100) yy += 2000;
+              return new Date(yy, mm, dd, 12);
+            }
+          }
+        }
+        return null;
+      }
+    }
+    return null;
   }
 
   function calcFromInput(input, accDate, closeDate) {
@@ -1529,7 +1578,14 @@
     const select = input.nextElementSibling;
     const type = select && select.tagName === 'SELECT' ? select.value : input.dataset.type;
 
-    const baseDate = base === 'acceptance' ? accDate : closeDate;
+    let baseDate;
+    if (base === 'acceptance') baseDate = accDate;
+    else if (base === 'closing') baseDate = closeDate;
+    else if (base === 'parent') {
+      const parentTerm = input.dataset.parent;
+      baseDate = getRowDate(parentTerm);
+    }
+
     const row = input.closest('tr');
     const dateEl = row.querySelector('.due-date.auto');
     if (!dateEl) return;
