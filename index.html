@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ulu Team — Transaction Timelines</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
@@ -705,7 +711,7 @@
     position: fixed;
     bottom: 24px;
     right: 24px;
-    display: flex;
+    display: none;
     gap: 10px;
     z-index: 1000;
   }
@@ -769,7 +775,277 @@
   }
 
   @page { size: letter landscape; margin: 0.25in; }
+
+  /* Dashboard styles */
+  #dashboard-view { display: none; }
+  #editor-view { display: none; }
+
+  .dashboard-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .dashboard-header {
+    background: #B32025;
+    color: #fff;
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px 6px 0 0;
+  }
+
+  .dashboard-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+  }
+
+  .dashboard-header .tagline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+    opacity: 0.9;
+  }
+
+  .btn-new {
+    background: #fff;
+    color: #B32025;
+    border: none;
+    padding: 10px 22px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .btn-new:hover { background: #f5f5f5; }
+
+  .dashboard-body {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .dashboard-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: #888;
+  }
+
+  .dashboard-empty h2 {
+    font-family: 'Playfair Display', serif;
+    color: #1a1a1a;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .dashboard-empty p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .timeline-list { list-style: none; }
+
+  .timeline-card {
+    display: flex;
+    align-items: center;
+    padding: 14px 24px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.15s;
+    gap: 16px;
+  }
+
+  .timeline-card:hover { background: #fff5f5; }
+  .timeline-card:last-child { border-bottom: none; }
+
+  .timeline-card .tl-property {
+    flex: 1;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+  }
+
+  .timeline-card .tl-property .tl-escrow {
+    font-size: 11px;
+    color: #888;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  .timeline-card .tl-dates {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #666;
+    text-align: right;
+    min-width: 140px;
+  }
+
+  .timeline-card .tl-progress {
+    min-width: 80px;
+    text-align: center;
+  }
+
+  .tl-progress-bar {
+    width: 80px;
+    height: 6px;
+    background: #e5e5e5;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 auto 3px;
+  }
+
+  .tl-progress-fill {
+    height: 100%;
+    background: #B32025;
+    border-radius: 3px;
+    transition: width 0.3s;
+  }
+
+  .tl-progress-text {
+    font-size: 10px;
+    color: #888;
+  }
+
+  .timeline-card .tl-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .tl-actions button {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+  }
+
+  .tl-actions button:hover { border-color: #B32025; color: #B32025; }
+
+  .tl-actions .btn-delete:hover { border-color: #c00; color: #c00; }
+
+  .tl-updated {
+    font-size: 10px;
+    color: #aaa;
+    margin-top: 2px;
+  }
+
+  /* Back button in editor */
+  .back-to-dashboard {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #B32025;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .back-to-dashboard:hover { text-decoration: underline; }
+
+  .editor-toolbar {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 6px;
+  }
+
+  .save-status {
+    font-size: 11px;
+    color: #888;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .save-status.saving { color: #f0a500; }
+  .save-status.saved { color: #2a9d2a; }
+  .save-status.error { color: #c00; }
+
+  .toast {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    z-index: 2000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media print {
+    #dashboard-view { display: none !important; }
+    #editor-view .editor-toolbar { display: none !important; }
+    .toast { display: none !important; }
+  }
 </style>
+</head>
+<body>
+
+<!-- ==================== DASHBOARD VIEW ==================== -->
+<div id="dashboard-view">
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <div>
+        <h1>THE ULU TEAM</h1>
+        <div class="tagline">Transaction Timelines</div>
+      </div>
+      <button class="btn-new" onclick="createNewTimeline()">+ New Timeline</button>
+    </div>
+    <div class="dashboard-body">
+      <div id="timeline-list-container">
+        <div class="dashboard-empty" id="empty-state">
+          <h2>No Timelines Yet</h2>
+          <p>Create your first transaction timeline to get started.</p>
+          <button class="btn-new" style="background:#B32025;color:#fff;" onclick="createNewTimeline()">+ New Timeline</button>
+        </div>
+        <ul class="timeline-list" id="timeline-list"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== EDITOR VIEW ==================== -->
+<div id="editor-view">
+  <div class="editor-toolbar">
+    <button class="back-to-dashboard" onclick="goToDashboard()">&larr; All Timelines</button>
+    <span class="save-status" id="save-status"></span>
+  </div>
 
 <div class="sheet">
   <div class="header">
@@ -1284,9 +1560,15 @@
 </div>
 
 <div class="action-btns">
+  <button class="action-btn secondary" onclick="goToDashboard()">Dashboard</button>
   <button class="action-btn secondary" onclick="window.print()">Print</button>
-  <button class="action-btn" id="pdfBtn" onclick="generatePDF()">Save as PDF</button>
+  <button class="action-btn secondary" onclick="generatePDF()" id="pdfBtn">Save as PDF</button>
+  <button class="action-btn" id="saveBtn" onclick="saveTimeline()">Save</button>
 </div>
+
+<div class="toast" id="toast"></div>
+
+</div><!-- end #editor-view -->
 
 <script>
   function toggle(el) { el.classList.toggle('checked'); }
@@ -1633,4 +1915,385 @@
     document.getElementById('daysToClose').value = '';
     recalc();
   }
+
+  // ===================== DASHBOARD & SAVE/LOAD =====================
+
+  let currentTimelineId = null;
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  function setStatus(text, cls) {
+    const el = document.getElementById('save-status');
+    el.textContent = text;
+    el.className = 'save-status' + (cls ? ' ' + cls : '');
+  }
+
+  // --- Serialization: Capture all form state from the editor ---
+  function serializeTimeline() {
+    const data = {};
+    data.acceptanceDate = document.getElementById('acceptanceDate').value;
+    data.closingDate = document.getElementById('closingDate').value;
+    data.daysToClose = document.getElementById('daysToClose').value;
+    data.property = document.getElementById('propertyAddress').value;
+
+    // Deal info contenteditable values
+    const infoRows = document.querySelectorAll('.deal-info .info-row');
+    data.dealInfo = [];
+    infoRows.forEach(row => {
+      const label = row.querySelector('.label');
+      const value = row.querySelector('.value[contenteditable]');
+      const addressInput = row.querySelector('.address-input');
+      if (label && value) {
+        data.dealInfo.push({ label: label.textContent.trim(), value: value.textContent.trim() });
+      }
+    });
+
+    // Buyer rows
+    data.buyerRows = [];
+    document.querySelectorAll('.buyer-row').forEach(row => {
+      const sel = row.querySelector('.buyer-label-select');
+      const inputs = row.querySelectorAll('.buyer-input');
+      data.buyerRows.push({
+        labelSelect: sel ? sel.value : '',
+        fields: Array.from(inputs).map(inp => inp.value)
+      });
+    });
+
+    // Table rows
+    data.sections = [];
+    document.querySelectorAll('.sheet .section-header').forEach(header => {
+      const sectionName = header.textContent.trim();
+      const table = header.nextElementSibling;
+      if (!table || table.tagName !== 'TABLE') return;
+      const rows = [];
+      table.querySelectorAll('tbody tr').forEach(tr => {
+        const termEl = tr.querySelector('.term-no');
+        const term = termEl ? termEl.textContent.trim() : '';
+        const dueDateEl = tr.querySelector('.due-date');
+        const dueDate = dueDateEl ? dueDateEl.textContent.trim() : '';
+        const isManual = dueDateEl && dueDateEl.classList.contains('manual');
+        const offsetInput = tr.querySelector('.offset-input');
+        const offsetVal = offsetInput ? offsetInput.value : '';
+        const offsetSelect = tr.querySelector('.offset-select');
+        const offsetType = offsetSelect ? offsetSelect.value : '';
+        const checkbox = tr.querySelector('.checkbox');
+        const checked = checkbox ? checkbox.classList.contains('checked') : false;
+        const comment = tr.querySelector('.comments-cell');
+        const commentText = comment ? comment.textContent.trim() : '';
+        rows.push({ term, dueDate, isManual, offsetVal, offsetType, checked, comment: commentText });
+      });
+      data.sections.push({ name: sectionName, rows });
+    });
+
+    // Count completion
+    let totalCount = 0;
+    let completedCount = 0;
+    document.querySelectorAll('.sheet .checkbox').forEach(cb => {
+      totalCount++;
+      if (cb.classList.contains('checked')) completedCount++;
+    });
+    data.completedCount = completedCount;
+    data.totalCount = totalCount;
+    data.escrow = '';
+    const escrowRow = data.dealInfo.find(r => r.label.toLowerCase().includes('escrow'));
+    if (escrowRow) data.escrow = escrowRow.value;
+
+    return data;
+  }
+
+  // --- Deserialization: Restore form state from saved data ---
+  function deserializeTimeline(data) {
+    if (!data) return;
+
+    document.getElementById('acceptanceDate').value = data.acceptanceDate || '';
+    document.getElementById('closingDate').value = data.closingDate || '';
+    document.getElementById('daysToClose').value = data.daysToClose || '';
+    document.getElementById('propertyAddress').value = data.property || '';
+
+    // Deal info
+    if (data.dealInfo) {
+      const infoRows = document.querySelectorAll('.deal-info .info-row');
+      infoRows.forEach(row => {
+        const label = row.querySelector('.label');
+        const value = row.querySelector('.value[contenteditable]');
+        if (label && value) {
+          const match = data.dealInfo.find(d => d.label === label.textContent.trim());
+          if (match) value.textContent = match.value;
+        }
+      });
+    }
+
+    // Buyer rows
+    if (data.buyerRows) {
+      const buyerRows = document.querySelectorAll('.buyer-row');
+      data.buyerRows.forEach((br, i) => {
+        const row = buyerRows[i];
+        if (!row) return;
+        const sel = row.querySelector('.buyer-label-select');
+        if (sel && br.labelSelect) sel.value = br.labelSelect;
+        const inputs = row.querySelectorAll('.buyer-input');
+        (br.fields || []).forEach((val, j) => {
+          if (inputs[j]) inputs[j].value = val;
+        });
+      });
+    }
+
+    // Table rows
+    if (data.sections) {
+      const headers = document.querySelectorAll('.sheet .section-header');
+      headers.forEach(header => {
+        const sectionName = header.textContent.trim();
+        const savedSection = data.sections.find(s => s.name === sectionName);
+        if (!savedSection) return;
+        const table = header.nextElementSibling;
+        if (!table || table.tagName !== 'TABLE') return;
+        const trs = table.querySelectorAll('tbody tr');
+        trs.forEach((tr, i) => {
+          const rowData = savedSection.rows[i];
+          if (!rowData) return;
+          const dueDateEl = tr.querySelector('.due-date.manual');
+          if (dueDateEl && rowData.isManual && rowData.dueDate) {
+            dueDateEl.textContent = rowData.dueDate;
+          }
+          const offsetInput = tr.querySelector('.offset-input');
+          if (offsetInput && rowData.offsetVal) offsetInput.value = rowData.offsetVal;
+          const offsetSelect = tr.querySelector('.offset-select');
+          if (offsetSelect && rowData.offsetType) offsetSelect.value = rowData.offsetType;
+          const checkbox = tr.querySelector('.checkbox');
+          if (checkbox) {
+            checkbox.classList.toggle('checked', !!rowData.checked);
+          }
+          const comment = tr.querySelector('.comments-cell');
+          if (comment && rowData.comment) comment.textContent = rowData.comment;
+        });
+      });
+    }
+
+    recalc();
+  }
+
+  // Clear all form fields to blank state
+  function clearEditor() {
+    document.getElementById('acceptanceDate').value = '';
+    document.getElementById('closingDate').value = '';
+    document.getElementById('daysToClose').value = '';
+    document.getElementById('propertyAddress').value = '';
+
+    document.querySelectorAll('.deal-info .info-row .value[contenteditable]').forEach(el => {
+      const label = el.closest('.info-row')?.querySelector('.label')?.textContent.trim() || '';
+      if (label === 'Buyer Agent') {
+        el.textContent = 'Daniel Ulu \u00b7 daniel@uluteam.com \u00b7 808-295-8157';
+      } else {
+        el.textContent = '\u2014';
+      }
+    });
+
+    document.querySelectorAll('.buyer-row').forEach(row => {
+      row.querySelectorAll('.buyer-input').forEach(inp => inp.value = '');
+    });
+
+    document.querySelectorAll('.sheet .checkbox').forEach(cb => cb.classList.remove('checked'));
+    document.querySelectorAll('.sheet .comments-cell').forEach(c => c.textContent = '');
+    document.querySelectorAll('.sheet .due-date.manual').forEach(d => d.textContent = '\u2014');
+
+    // Reset offset inputs to default values
+    document.querySelectorAll('.offset-input').forEach(inp => {
+      inp.value = inp.defaultValue;
+    });
+    document.querySelectorAll('.offset-select').forEach(sel => {
+      sel.selectedIndex = Array.from(sel.options).findIndex(o => o.defaultSelected);
+      if (sel.selectedIndex < 0) sel.selectedIndex = 0;
+    });
+
+    recalc();
+  }
+
+  // --- API calls ---
+  async function fetchTimelines() {
+    const res = await fetch('/api/timelines');
+    if (!res.ok) throw new Error('Failed to fetch timelines');
+    return res.json();
+  }
+
+  async function fetchTimeline(id) {
+    const res = await fetch('/api/timelines/' + encodeURIComponent(id));
+    if (!res.ok) throw new Error('Failed to fetch timeline');
+    return res.json();
+  }
+
+  async function saveTimelineAPI(data) {
+    const id = data.id || '';
+    const url = id ? '/api/timelines/' + encodeURIComponent(id) : '/api/timelines';
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('Failed to save timeline');
+    return res.json();
+  }
+
+  async function deleteTimelineAPI(id) {
+    const res = await fetch('/api/timelines/' + encodeURIComponent(id), { method: 'DELETE' });
+    if (!res.ok) throw new Error('Failed to delete');
+    return res.json();
+  }
+
+  // --- Navigation ---
+  function showView(view) {
+    document.getElementById('dashboard-view').style.display = view === 'dashboard' ? 'block' : 'none';
+    document.getElementById('editor-view').style.display = view === 'editor' ? 'block' : 'none';
+    document.querySelector('.action-btns').style.display = view === 'editor' ? 'flex' : 'none';
+  }
+
+  async function goToDashboard() {
+    showView('dashboard');
+    currentTimelineId = null;
+    window.location.hash = '';
+    await renderDashboard();
+  }
+
+  async function renderDashboard() {
+    try {
+      const timelines = await fetchTimelines();
+      const list = document.getElementById('timeline-list');
+      const empty = document.getElementById('empty-state');
+
+      if (!timelines.length) {
+        empty.style.display = 'block';
+        list.style.display = 'none';
+        return;
+      }
+
+      empty.style.display = 'none';
+      list.style.display = 'block';
+
+      list.innerHTML = timelines.map(tl => {
+        const pct = tl.totalCount ? Math.round((tl.completedCount / tl.totalCount) * 100) : 0;
+        const propDisplay = (!tl.property || tl.property === '\u2014') ? 'Untitled Timeline' : tl.property;
+        const escrowDisplay = tl.escrow && tl.escrow !== '\u2014' ? 'Escrow: ' + tl.escrow : '';
+        const dateDisplay = [];
+        if (tl.acceptanceDate) dateDisplay.push('Acc: ' + tl.acceptanceDate);
+        if (tl.closingDate) dateDisplay.push('Close: ' + tl.closingDate);
+        const updated = tl.updatedAt ? 'Updated ' + new Date(tl.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+
+        return '<li class="timeline-card" onclick="openTimeline(\'' + tl.id + '\')">' +
+          '<div class="tl-property">' +
+            '<div>' + escapeHtml(propDisplay) + '</div>' +
+            (escrowDisplay ? '<div class="tl-escrow">' + escapeHtml(escrowDisplay) + '</div>' : '') +
+          '</div>' +
+          '<div class="tl-dates">' +
+            '<div>' + escapeHtml(dateDisplay.join(' | ')) + '</div>' +
+            '<div class="tl-updated">' + escapeHtml(updated) + '</div>' +
+          '</div>' +
+          '<div class="tl-progress">' +
+            '<div class="tl-progress-bar"><div class="tl-progress-fill" style="width:' + pct + '%"></div></div>' +
+            '<div class="tl-progress-text">' + tl.completedCount + '/' + tl.totalCount + ' tasks</div>' +
+          '</div>' +
+          '<div class="tl-actions">' +
+            '<button onclick="event.stopPropagation(); openTimeline(\'' + tl.id + '\')">Edit</button>' +
+            '<button class="btn-delete" onclick="event.stopPropagation(); confirmDelete(\'' + tl.id + '\', \'' + escapeHtml(propDisplay).replace(/'/g, "\\'") + '\')">Delete</button>' +
+          '</div>' +
+        '</li>';
+      }).join('');
+    } catch (err) {
+      console.error('Dashboard load error:', err);
+      showToast('Failed to load timelines');
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  async function openTimeline(id) {
+    try {
+      const data = await fetchTimeline(id);
+      currentTimelineId = id;
+      clearEditor();
+      deserializeTimeline(data);
+      showView('editor');
+      window.location.hash = '#edit/' + id;
+      setStatus('Loaded', 'saved');
+    } catch (err) {
+      console.error('Load error:', err);
+      showToast('Failed to load timeline');
+    }
+  }
+
+  function createNewTimeline() {
+    currentTimelineId = null;
+    clearEditor();
+    showView('editor');
+    window.location.hash = '#new';
+    setStatus('New timeline — not yet saved', '');
+  }
+
+  async function saveTimeline() {
+    const btn = document.getElementById('saveBtn');
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+    setStatus('Saving...', 'saving');
+
+    try {
+      const data = serializeTimeline();
+      if (currentTimelineId) data.id = currentTimelineId;
+      const saved = await saveTimelineAPI(data);
+      currentTimelineId = saved.id;
+      window.location.hash = '#edit/' + saved.id;
+      setStatus('Saved', 'saved');
+      showToast('Timeline saved');
+    } catch (err) {
+      console.error('Save error:', err);
+      setStatus('Save failed', 'error');
+      showToast('Failed to save — please try again');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Save';
+    }
+  }
+
+  async function confirmDelete(id, name) {
+    if (!confirm('Delete "' + name + '"? This cannot be undone.')) return;
+    try {
+      await deleteTimelineAPI(id);
+      showToast('Timeline deleted');
+      await renderDashboard();
+    } catch (err) {
+      showToast('Failed to delete');
+    }
+  }
+
+  // --- Init: route based on URL hash ---
+  async function initApp() {
+    const hash = window.location.hash;
+    if (hash.startsWith('#edit/')) {
+      const id = hash.replace('#edit/', '');
+      await openTimeline(id);
+    } else if (hash === '#new') {
+      createNewTimeline();
+    } else {
+      showView('dashboard');
+      await renderDashboard();
+    }
+  }
+
+  window.addEventListener('hashchange', () => {
+    const hash = window.location.hash;
+    if (!hash || hash === '#') {
+      showView('dashboard');
+      renderDashboard();
+    }
+  });
+
+  initApp();
 </script>
+</body>
+</html>
