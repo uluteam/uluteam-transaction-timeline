@@ -1,0 +1,16 @@
+{
+  "name": "uluteam-transaction-timeline",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "npx drizzle-kit generate || true"
+  },
+  "dependencies": {
+    "@netlify/database": "^0.6.0",
+    "@netlify/functions": "^3.0.0",
+    "drizzle-orm": "beta"
+  },
+  "devDependencies": {
+    "drizzle-kit": "beta"
+  }
+}
